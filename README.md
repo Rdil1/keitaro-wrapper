@@ -25,7 +25,7 @@
 Нужен Python 3.10+.
 
 ```bash
-git clone <repo-url> && cd keitaro-wrapper
+git clone https://github.com/Rdil1/keitaro-wrapper && cd keitaro-wrapper
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt

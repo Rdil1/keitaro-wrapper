@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keitaro wrapper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Keitaro</h1>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="create" aria-selected="true">New campaign</button>
+      <button role="tab" data-tab="editor" aria-selected="false">Offer editor</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-create" class="panel">
+      <form id="create-form" class="create" novalidate>
+        <h2>New campaign</h2>
+        <p class="hint">Creates a campaign with two streams: visitors from the selected countries go to Google, everyone else goes to the offer.</p>
+
+        <label class="field">
+          <span>Name</span>
+          <div class="prefixed">
+            <span class="prefix" id="prefix"></span>
+            <input name="name" required autocomplete="off" placeholder="campaign1">
+          </div>
+        </label>
+
+        <div class="row">
+          <label class="field geo">
+            <span>Geo</span>
+            <input name="geo" required placeholder="MX, AU, RO" autocomplete="off" title="One or more countries, comma-separated">
+          </label>
+          <label class="field grow">
+            <span>Offer</span>
+            <input name="offer" required list="offers-list" placeholder="Start typing an ID or name" autocomplete="off">
+          </label>
+        </div>
+
+        <p class="fixed" id="fixed-settings" hidden></p>
+        <details class="more">
+          <summary>Domain, group and source</summary>
+          <div class="row">
+            <label class="field grow"><span>Domain</span><select name="domain_id"></select></label>
+            <label class="field grow"><span>Group</span><select name="group_id"></select></label>
+            <label class="field grow"><span>Source</span><select name="traffic_source_id"></select></label>
+          </div>
+        </details>
+
+        <p class="error" id="create-error" role="alert"></p>
+        <button class="primary" type="submit">Create campaign</button>
+      </form>
+
+      <div id="create-result" class="result" hidden></div>
+    </section>
+
+    <section id="tab-editor" class="panel" hidden>
+      <aside class="list">
+        <input id="campaign-search" type="search" placeholder="Search campaigns">
+        <ul id="campaign-list"></ul>
+      </aside>
+      <div id="editor" class="editor">
+        <p class="empty">Pick a campaign on the left to edit its offers.</p>
+      </div>
+    </section>
+  </main>
+
+  <datalist id="offers-list"></datalist>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
